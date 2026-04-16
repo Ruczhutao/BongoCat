@@ -12,6 +12,7 @@ import { round } from 'es-toolkit'
 import { nth } from 'es-toolkit/compat'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 
+import KeyHint from '@/components/key-hint/index.vue'
 import { useAppMenu } from '@/composables/useAppMenu'
 import { useDevice } from '@/composables/useDevice'
 import { useGamepad } from '@/composables/useGamepad'
@@ -190,6 +191,8 @@ function handleMouseMove(event: MouseEvent) {
       class="object-cover"
       :src="convertFileSrc(path)"
     >
+
+    <KeyHint v-show="catStore.display.showKeyHint" />
 
     <div
       v-show="resizing"

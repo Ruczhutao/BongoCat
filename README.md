@@ -1,3 +1,10 @@
+<div align="center">
+
+> **Ruczhutao Fork 版本** — 在原项目基础上新增了 **按键气泡提示** 功能，支持自定义位置、颜色、大小等。
+> [→ 查看原始项目](https://github.com/ayangweb/BongoCat)
+
+</div>
+
 ![BongoCat](https://socialify.git.ci/ayangweb/BongoCat/image?custom_description=&description=1&font=Source+Code+Pro&forks=1&issues=1&logo=https%3A%2F%2Fgithub.com%2Fayangweb%2FBongoCat%2Fblob%2Fmaster%2Fsrc-tauri%2Fassets%2Flogo-mac.png%3Fraw%3Dtrue&name=1&owner=1&pattern=Floating+Cogs&pulls=1&stargazers=1&theme=Auto)
 
 <div align="center">
@@ -53,6 +60,7 @@
 
 - 适配 macOS、Windows 和 Linux(x11)。
 - 根据键盘、鼠标或手柄的操作，同步对应的动作。
+- **按键气泡提示** — 实时显示当前按下的按键，支持自定义位置、字体大小、颜色、背景等（**Fork 新增**）。
 - 支持导入自定义模型，自由打造专属猫咪形象。
 - 完全开源，代码公开透明，绝不收集任何用户数据。
 - 支持离线运行，无需联网，保护用户隐私。

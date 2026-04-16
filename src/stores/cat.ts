@@ -19,6 +19,14 @@ export interface CatStore {
     hideOnHover: boolean
     keepInScreen: boolean
   }
+  display: {
+    showKeyHint: boolean
+    keyHintPosition: number // top %
+    keyHintFontSize: number // px
+    keyHintColor: string
+    keyHintBgColor: string
+    keyHintBorder: boolean
+  }
 }
 
 export const useCatStore = defineStore('cat', () => {
@@ -64,6 +72,15 @@ export const useCatStore = defineStore('cat', () => {
     keepInScreen: true,
   })
 
+  const display = reactive<CatStore['display']>({
+    showKeyHint: true,
+    keyHintPosition: 12,
+    keyHintFontSize: 20,
+    keyHintColor: '#000000',
+    keyHintBgColor: 'rgba(255, 255, 255, 0.85)',
+    keyHintBorder: false,
+  })
+
   const init = () => {
     if (migrated.value) return
 
@@ -83,6 +100,7 @@ export const useCatStore = defineStore('cat', () => {
     migrated,
     model,
     window,
+    display,
     init,
   }
 })
