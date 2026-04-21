@@ -27,10 +27,12 @@
           "showKeyHint": "Show Key Hint",
           "keyHintSettings": "Key Hint Settings",
           "keyHintPosition": "Vertical Position",
+          "keyHintHorizontalPosition": "Horizontal Position",
           "keyHintFontSize": "Font Size",
           "keyHintColor": "Text Color",
           "keyHintBgColor": "Background Color",
-          "keyHintBorder": "Show Glow Border"
+          "keyHintBorder": "Show Glow Border",
+          "keyHintPreview": "Position Preview"
         },
         "hints": {
           "mirrorMode": "When enabled, the model will be mirrored horizontally.",
@@ -44,7 +46,9 @@
           "autoReleaseDelay": "On Windows, some system keys cannot capture release events and will auto-release after timeout.",
           "hideOnHover": "When enabled, the window hides when mouse hovers over it.",
           "showKeyHint": "When enabled, key hints appear above the cat when keys are pressed.",
-          "keyHintBorder": "When enabled, a white glow border appears around the text."
+          "keyHintBorder": "When enabled, a white glow border appears around the text.",
+          "keyHintPreview": "Real-time preview of the key hint bubble position and style.",
+          "keyHintHorizontalPosition": "Adjust the horizontal position of the bubble from the window edge."
         }
       },
       "general": {

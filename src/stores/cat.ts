@@ -22,6 +22,7 @@ export interface CatStore {
   display: {
     showKeyHint: boolean
     keyHintPosition: number // top %
+    keyHintHorizontalPosition: number // left/right %
     keyHintFontSize: number // px
     keyHintColor: string
     keyHintBgColor: string
@@ -75,6 +76,7 @@ export const useCatStore = defineStore('cat', () => {
   const display = reactive<CatStore['display']>({
     showKeyHint: true,
     keyHintPosition: 12,
+    keyHintHorizontalPosition: 20,
     keyHintFontSize: 20,
     keyHintColor: '#000000',
     keyHintBgColor: 'rgba(255, 255, 255, 0.85)',

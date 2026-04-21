@@ -7,9 +7,18 @@ import { useModelStore } from '@/stores/model'
 const modelStore = useModelStore()
 const catStore = useCatStore()
 
-const containerStyle = computed(() => ({
-  top: `${catStore.display.keyHintPosition}%`,
-}))
+const containerStyle = computed(() => {
+  const isMirror = catStore.model.mirror
+  const hPos = catStore.display.keyHintHorizontalPosition
+  return {
+    top: `${catStore.display.keyHintPosition}%`,
+    width: 'auto',
+    height: 'auto',
+    ...(isMirror
+      ? { left: `${hPos}%`, transform: 'scaleX(-1)' }
+      : { right: `${hPos}%` }),
+  }
+})
 
 const textStyle = computed(() => ({
   fontSize: `${catStore.display.keyHintFontSize}px`,
@@ -82,9 +91,8 @@ function formatKeyName(key: string): string {
 <style scoped lang="scss">
 .key-hint-container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
+  align-items: center;
   gap: 12px;
   z-index: 9999;
   pointer-events: none;

@@ -27,10 +27,12 @@
           "showKeyHint": "显示按键提示",
           "keyHintSettings": "按键提示设置",
           "keyHintPosition": "垂直位置",
+          "keyHintHorizontalPosition": "水平位置",
           "keyHintFontSize": "字体大小",
           "keyHintColor": "文字颜色",
           "keyHintBgColor": "背景颜色",
-          "keyHintBorder": "显示光晕边框"
+          "keyHintBorder": "显示光晕边框",
+          "keyHintPreview": "位置预览"
         },
         "hints": {
           "mirrorMode": "启用后，模型将水平镜像翻转。",
@@ -44,7 +46,9 @@
           "autoReleaseDelay": "由于 Windows 下部分系统级按键无法捕获释放事件，超时后将自动视为已释放。",
           "hideOnHover": "启用后，鼠标悬停在窗口上时，窗口会隐藏。",
           "showKeyHint": "启用后，猫咪头顶会显示当前按下的按键。",
-          "keyHintBorder": "启用后，文字周围会显示白色光晕边框。"
+          "keyHintBorder": "启用后，文字周围会显示白色光晕边框。",
+          "keyHintPreview": "实时预览按键提示气泡的位置和样式效果。",
+          "keyHintHorizontalPosition": "调整气泡距离窗口边缘的水平位置。"
         }
       },
       "general": {

@@ -26,6 +26,24 @@ const bgColorOptions = computed(() => [
   { label: '白色', value: 'rgba(255, 255, 255, 0.95)' },
   { label: '黑色', value: 'rgba(0, 0, 0, 0.75)' },
 ])
+
+const previewBubbleStyle = computed(() => {
+  const isMirror = catStore.model.mirror
+  return {
+    top: `${catStore.display.keyHintPosition}%`,
+    ...(isMirror
+      ? { left: `${catStore.display.keyHintHorizontalPosition}%` }
+      : { right: `${catStore.display.keyHintHorizontalPosition}%` }),
+    fontSize: `${Math.max(10, Math.min(16, catStore.display.keyHintFontSize * 0.6))}px`,
+    color: catStore.display.keyHintColor,
+    background: catStore.display.keyHintBgColor,
+    padding: catStore.display.keyHintBgColor === 'rgba(255, 255, 255, 0)' ? '2px 4px' : '3px 8px',
+    borderRadius: catStore.display.keyHintBgColor === 'rgba(255, 255, 255, 0)' ? '0' : '6px',
+    textShadow: catStore.display.keyHintBorder
+      ? `0 0 2px rgba(255,255,255,0.9), 0 0 4px rgba(255,255,255,0.7)`
+      : 'none',
+  }
+})
 </script>
 
 <template>
@@ -89,6 +107,16 @@ const bgColorOptions = computed(() => [
       />
     </ProListItem>
 
+    <ProListItem :title="$t('pages.preference.cat.labels.keyHintHorizontalPosition')">
+      <InputNumber
+        v-model:value="catStore.display.keyHintHorizontalPosition"
+        addon-after="%"
+        class="w-28"
+        :max="50"
+        :min="0"
+      />
+    </ProListItem>
+
     <ProListItem :title="$t('pages.preference.cat.labels.keyHintFontSize')">
       <InputNumber
         v-model:value="catStore.display.keyHintFontSize"
@@ -100,19 +128,31 @@ const bgColorOptions = computed(() => [
     </ProListItem>
 
     <ProListItem :title="$t('pages.preference.cat.labels.keyHintColor')">
-      <Select
-        v-model:value="catStore.display.keyHintColor"
-        class="w-28"
-        :options="colorOptions"
-      />
+      <div class="flex items-center gap-2">
+        <Select
+          v-model:value="catStore.display.keyHintColor"
+          class="w-28"
+          :options="colorOptions"
+        />
+        <div
+          class="h-5 w-5 border border-gray-300 rounded"
+          :style="{ backgroundColor: catStore.display.keyHintColor }"
+        />
+      </div>
     </ProListItem>
 
     <ProListItem :title="$t('pages.preference.cat.labels.keyHintBgColor')">
-      <Select
-        v-model:value="catStore.display.keyHintBgColor"
-        class="w-28"
-        :options="bgColorOptions"
-      />
+      <div class="flex items-center gap-2">
+        <Select
+          v-model:value="catStore.display.keyHintBgColor"
+          class="w-28"
+          :options="bgColorOptions"
+        />
+        <div
+          class="h-5 w-5 border border-gray-300 rounded"
+          :style="{ backgroundColor: catStore.display.keyHintBgColor }"
+        />
+      </div>
     </ProListItem>
 
     <ProListItem
@@ -120,6 +160,29 @@ const bgColorOptions = computed(() => [
       :title="$t('pages.preference.cat.labels.keyHintBorder')"
     >
       <Switch v-model:checked="catStore.display.keyHintBorder" />
+    </ProListItem>
+
+    <ProListItem
+      :description="$t('pages.preference.cat.hints.keyHintPreview')"
+      :title="$t('pages.preference.cat.labels.keyHintPreview')"
+      vertical
+    >
+      <div class="key-hint-preview">
+        <div
+          class="preview-window"
+          :class="{ mirror: catStore.model.mirror }"
+        >
+          <div class="preview-cat">
+            🐱
+          </div>
+          <div
+            class="preview-bubble"
+            :style="previewBubbleStyle"
+          >
+            Abc
+          </div>
+        </div>
+      </div>
     </ProListItem>
   </ProList>
 
@@ -188,3 +251,38 @@ const bgColorOptions = computed(() => [
     </ProListItem>
   </ProList>
 </template>
+
+<style scoped>
+.key-hint-preview .preview-window {
+  position: relative;
+  width: 240px;
+  height: 140px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.key-hint-preview .preview-cat {
+  position: absolute;
+  bottom: 10%;
+  font-size: 40px;
+  line-height: 1;
+}
+.key-hint-preview .preview-window:not(.mirror) .preview-cat {
+  left: 25%;
+  transform: translateX(-50%);
+}
+.key-hint-preview .preview-window.mirror .preview-cat {
+  right: 25%;
+  transform: translateX(50%);
+}
+.key-hint-preview .preview-bubble {
+  position: absolute;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+</style>
