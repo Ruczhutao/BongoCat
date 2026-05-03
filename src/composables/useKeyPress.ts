@@ -8,7 +8,11 @@ import {
 } from '@tauri-apps/plugin-global-shortcut'
 import { onUnmounted, ref, watch } from 'vue'
 
-export function useKeyPress(shortcut: Ref<string | undefined, string>, callback: ShortcutHandler) {
+export function useKeyPress(
+  shortcut: Ref<string | undefined, string>,
+  callback: ShortcutHandler,
+  enabled: Ref<boolean> = ref(true),
+) {
   const oldShortcut = ref(shortcut.value)
 
   async function unbind() {
@@ -21,10 +25,10 @@ export function useKeyPress(shortcut: Ref<string | undefined, string>, callback:
     return unregister(oldShortcut.value)
   }
 
-  watch(shortcut, async (value) => {
+  watch([shortcut, enabled], async ([value, isEnabled]) => {
     await unbind()
 
-    if (!value) return
+    if (!isEnabled || !value) return
 
     await register(value, (event) => {
       if (event.state === 'Released') return

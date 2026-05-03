@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Switch } from 'ant-design-vue'
 import { storeToRefs } from 'pinia'
 
 import ProList from '@/components/pro-list/index.vue'
@@ -11,65 +12,74 @@ import { useCatStore } from '@/stores/cat'
 import { useShortcutStore } from '@/stores/shortcut.ts'
 
 const shortcutStore = useShortcutStore()
-const { visibleCat, visiblePreference, mirrorMode, penetrable, alwaysOnTop } = storeToRefs(shortcutStore)
+const { enabled, visibleCat, visiblePreference, mirrorMode, penetrable, alwaysOnTop } = storeToRefs(shortcutStore)
 const catStore = useCatStore()
 
 useKeyPress(visibleCat, () => {
   catStore.window.visible = !catStore.window.visible
-})
+}, enabled)
 
 useKeyPress(visiblePreference, () => {
   toggleWindowVisible(WINDOW_LABEL.PREFERENCE)
-})
+}, enabled)
 
 useKeyPress(mirrorMode, () => {
   catStore.model.mirror = !catStore.model.mirror
-})
+}, enabled)
 
 useKeyPress(penetrable, () => {
   catStore.window.passThrough = !catStore.window.passThrough
-})
+}, enabled)
 
 useKeyPress(alwaysOnTop, () => {
   catStore.window.alwaysOnTop = !catStore.window.alwaysOnTop
-})
+}, enabled)
 </script>
 
 <template>
   <ProList :title="$t('pages.preference.shortcut.title')">
     <ProListItem
-      :description="$t('pages.preference.shortcut.hints.toggleCat')"
-      :title="$t('pages.preference.shortcut.labels.toggleCat')"
+      :description="$t('pages.preference.shortcut.hints.enableShortcuts')"
+      :title="$t('pages.preference.shortcut.labels.enableShortcuts')"
     >
-      <Shortcut v-model="shortcutStore.visibleCat" />
+      <Switch v-model:checked="shortcutStore.enabled" />
     </ProListItem>
 
-    <ProListItem
-      :description="$t('pages.preference.shortcut.hints.togglePreferences')"
-      :title="$t('pages.preference.shortcut.labels.togglePreferences')"
-    >
-      <Shortcut v-model="shortcutStore.visiblePreference" />
-    </ProListItem>
+    <div :class="{ 'pointer-events-none opacity-50': !shortcutStore.enabled }">
+      <ProListItem
+        :description="$t('pages.preference.shortcut.hints.toggleCat')"
+        :title="$t('pages.preference.shortcut.labels.toggleCat')"
+      >
+        <Shortcut v-model="shortcutStore.visibleCat" />
+      </ProListItem>
 
-    <ProListItem
-      :description="$t('pages.preference.shortcut.hints.mirrorMode')"
-      :title="$t('pages.preference.shortcut.labels.mirrorMode')"
-    >
-      <Shortcut v-model="shortcutStore.mirrorMode" />
-    </ProListItem>
+      <ProListItem
+        :description="$t('pages.preference.shortcut.hints.togglePreferences')"
+        :title="$t('pages.preference.shortcut.labels.togglePreferences')"
+      >
+        <Shortcut v-model="shortcutStore.visiblePreference" />
+      </ProListItem>
 
-    <ProListItem
-      :description="$t('pages.preference.shortcut.hints.passThrough')"
-      :title="$t('pages.preference.shortcut.labels.passThrough')"
-    >
-      <Shortcut v-model="shortcutStore.penetrable" />
-    </ProListItem>
+      <ProListItem
+        :description="$t('pages.preference.shortcut.hints.mirrorMode')"
+        :title="$t('pages.preference.shortcut.labels.mirrorMode')"
+      >
+        <Shortcut v-model="shortcutStore.mirrorMode" />
+      </ProListItem>
 
-    <ProListItem
-      :description="$t('pages.preference.shortcut.hints.alwaysOnTop')"
-      :title="$t('pages.preference.shortcut.labels.alwaysOnTop')"
-    >
-      <Shortcut v-model="shortcutStore.alwaysOnTop" />
-    </ProListItem>
+      <ProListItem
+        :description="$t('pages.preference.shortcut.hints.passThrough')"
+        :title="$t('pages.preference.shortcut.labels.passThrough')"
+      >
+        <Shortcut v-model="shortcutStore.penetrable" />
+      </ProListItem>
+
+      <ProListItem
+        :description="$t('pages.preference.shortcut.hints.alwaysOnTop')"
+        :title="$t('pages.preference.shortcut.labels.alwaysOnTop')"
+      >
+        <Shortcut v-model="shortcutStore.alwaysOnTop" />
+      </ProListItem>
+    </div>
   </ProList>
 </template>

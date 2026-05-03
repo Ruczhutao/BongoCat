@@ -103,6 +103,7 @@
       "shortcut": {
         "title": "Phím tắt",
         "labels": {
+          "enableShortcuts": "Bật Phím tắt",
           "toggleCat": "Ẩn/Hiện Mèo",
           "togglePreferences": "Mở Tùy chỉnh",
           "mirrorMode": "Chế độ gương",
@@ -110,6 +111,7 @@
           "alwaysOnTop": "Luôn trên cùng"
         },
         "hints": {
+          "enableShortcuts": "Khi bật, các phím tắt sẽ có hiệu lực. Khi tắt, tất cả phím tắt đã đăng ký sẽ bị hủy để tránh xung đột với các ứng dụng khác.",
           "toggleCat": "Bật/Tắt cửa sổ mèo.",
           "togglePreferences": "Bật/Tắt cửa sổ tùy chỉnh.",
           "mirrorMode": "Bật/Tắt chế độ gương.",

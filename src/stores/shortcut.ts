@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export type HotKey = 'visibleCat' | 'mirrorMode' | 'penetrable' | 'alwaysOnTop'
 
 export const useShortcutStore = defineStore('shortcut', () => {
+  const enabled = ref(false)
   const visibleCat = ref('')
   const visiblePreference = ref('')
   const mirrorMode = ref('')
@@ -11,6 +12,7 @@ export const useShortcutStore = defineStore('shortcut', () => {
   const alwaysOnTop = ref('')
 
   return {
+    enabled,
     visibleCat,
     visiblePreference,
     mirrorMode,

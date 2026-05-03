@@ -103,6 +103,7 @@
       "shortcut": {
         "title": "快速鍵",
         "labels": {
+          "enableShortcuts": "啟用快速鍵",
           "toggleCat": "開啟貓咪",
           "togglePreferences": "開啟偏好設定",
           "mirrorMode": "鏡像模式",
@@ -110,6 +111,7 @@
           "alwaysOnTop": "視窗置頂"
         },
         "hints": {
+          "enableShortcuts": "啟用後，快速鍵功能才會生效。關閉時將註銷所有已註冊的快速鍵，不再搶占其他應用程式。",
           "toggleCat": "切換貓咪視窗的顯示與隱藏。",
           "togglePreferences": "切換偏好設定視窗的顯示與隱藏。",
           "mirrorMode": "切換貓咪的鏡像模式。",

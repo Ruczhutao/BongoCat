@@ -116,6 +116,7 @@
       "shortcut": {
         "title": "Shortcuts",
         "labels": {
+          "enableShortcuts": "Enable Shortcuts",
           "toggleCat": "Toggle Cat",
           "togglePreferences": "Toggle Preferences",
           "mirrorMode": "Mirror Mode",
@@ -123,6 +124,7 @@
           "alwaysOnTop": "Always on Top"
         },
         "hints": {
+          "enableShortcuts": "When enabled, shortcuts will take effect. When disabled, all registered shortcuts will be unregistered to avoid conflicts with other apps.",
           "toggleCat": "Toggle the visibility of the cat window.",
           "togglePreferences": "Toggle the visibility of the preferences window.",
           "mirrorMode": "Toggle the cat's mirror mode.",

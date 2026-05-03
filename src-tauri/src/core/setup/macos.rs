@@ -21,6 +21,10 @@ pub fn platform(
 
     let _ = app_handle.set_dock_visibility(false);
 
+    let _ = app_handle.set_menu(
+        tauri::menu::Menu::new(app_handle).expect("failed to create menu"),
+    );
+
     let panel = main_window.to_panel().unwrap();
 
     panel.set_style_mask(NSWindowStyleMaskNonActivatingPanel | NSResizableWindowMask);
